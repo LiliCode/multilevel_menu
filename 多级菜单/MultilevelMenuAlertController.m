@@ -55,6 +55,7 @@
     [self.oneTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
+#pragma mark - 高度变化
 
 - (void)setTableViewHeight:(UITableView *)tableView itemCount:(NSUInteger)count
 {
@@ -107,6 +108,7 @@
     self.alert.frame = frame;
 }
 
+#pragma mark - 初始化
 
 + (instancetype)multilevelMenuWithMenuModel:(MultilevelMenuModel *)model selectInfo:(void (^)(id))selectUsingBlock
 {
@@ -262,6 +264,7 @@
     return cell;
 }
 
+#pragma mark - 内存管理
 
 - (void)didReceiveMemoryWarning
 {
