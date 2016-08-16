@@ -7,21 +7,41 @@
 //
 
 #import "ViewController.h"
+#import "MultilevelMenuModel.h"
+#import "MultilevelMenuAlertController.h"
 
 @interface ViewController ()
+@property (strong , nonatomic) MultilevelMenuModel *menuModel;
+
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.menuModel = [[MultilevelMenuModel alloc] init];
+    
 }
 
-- (void)didReceiveMemoryWarning {
+- (IBAction)menu:(UIBarButtonItem *)sender
+{
+    MultilevelMenuAlertController *alert = [MultilevelMenuAlertController multilevelMenuWithMenuModel:self.menuModel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 @end
+
+
+
+
+
