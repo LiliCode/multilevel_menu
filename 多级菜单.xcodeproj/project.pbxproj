@@ -174,14 +174,15 @@
 		226CDAD11D618DF500565BF0 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				226CDAE01D61B77400565BF0 /* UITableView+EmptyData.h */,
-				226CDAE11D61B77400565BF0 /* UITableView+EmptyData.m */,
-				226CDAE31D61B77D00565BF0 /* UIColor+Extensions.h */,
-				226CDAE41D61B77D00565BF0 /* UIColor+Extensions.m */,
-				226CDAD51D618E8E00565BF0 /* ShadeViewController.h */,
-				226CDAD61D618E8E00565BF0 /* ShadeViewController.m */,
-				226CDAD21D618E8700565BF0 /* Action.h */,
-				226CDAD31D618E8700565BF0 /* Action.m */,
+				226CDAF11D63164800565BF0 /* Base */,
+				226CDAF01D6315B600565BF0 /* Menu */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		226CDAF01D6315B600565BF0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				226CDAD81D618F5E00565BF0 /* MultilevelMenuAlertController.h */,
 				226CDAD91D618F5E00565BF0 /* MultilevelMenuAlertController.m */,
 				226CDAE61D61BE4A00565BF0 /* OneMenuCellTableViewCell.h */,
@@ -194,7 +195,22 @@
 				226CDADC1D619A5C00565BF0 /* MultilevelMenuModel.m */,
 				226CDADE1D61A4C500565BF0 /* menu.json */,
 			);
-			name = Class;
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		226CDAF11D63164800565BF0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				226CDAE01D61B77400565BF0 /* UITableView+EmptyData.h */,
+				226CDAE11D61B77400565BF0 /* UITableView+EmptyData.m */,
+				226CDAE31D61B77D00565BF0 /* UIColor+Extensions.h */,
+				226CDAE41D61B77D00565BF0 /* UIColor+Extensions.m */,
+				226CDAD51D618E8E00565BF0 /* ShadeViewController.h */,
+				226CDAD61D618E8E00565BF0 /* ShadeViewController.m */,
+				226CDAD21D618E8700565BF0 /* Action.h */,
+				226CDAD31D618E8700565BF0 /* Action.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
