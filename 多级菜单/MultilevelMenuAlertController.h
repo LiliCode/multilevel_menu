@@ -18,7 +18,7 @@
  *
  *  @return 返回多级菜单控制器
  */
-+ (instancetype)multilevelMenuWithMenuModel:(MultilevelMenuModel *)model;
++ (instancetype)multilevelMenuWithMenuModel:(MultilevelMenuModel *)model selectInfo:(void (^)(id info))selectUsingBlock;
 
 
 @end

@@ -2,4 +2,54 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x591a;&#x7ea7;&#x83dc;&#x5355;/MultilevelMenuAlertController.m"
+            timestampString = "493032189.890298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MultilevelMenuAlertController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "&#x591a;&#x7ea7;&#x83dc;&#x5355;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lili/Documents/Lili/Code/Objective-C/UIKit/%E5%A4%9A%E7%BA%A7%E8%8F%9C%E5%8D%95/%E5%A4%9A%E7%BA%A7%E8%8F%9C%E5%8D%95/MultilevelMenuAlertController.m"
+                  timestampString = "493032189.901596"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "828">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MultilevelMenuAlertController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "&#x591a;&#x7ea7;&#x83dc;&#x5355;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lili/Documents/Lili/Code/Objective-C/UIKit/%E5%A4%9A%E7%BA%A7%E8%8F%9C%E5%8D%95/%E5%A4%9A%E7%BA%A7%E8%8F%9C%E5%8D%95/MultilevelMenuAlertController.m"
+                  timestampString = "493032189.90178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "840">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

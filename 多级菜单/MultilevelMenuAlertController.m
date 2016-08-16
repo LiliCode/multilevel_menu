@@ -16,7 +16,10 @@
 #define ONE_TABLEVIEW_TAG   (100)
 #define TWO_TABLEVIEW_TAG   (101)
 
-#define MenuH   (300)
+#define ItemH       (50.0f) //Cell高度
+#define MaxRow      (5)     //最大行
+
+#define MenuH       (300)
 
 @interface MultilevelMenuAlertController ()<UITableViewDataSource, UITableViewDelegate>
 @property (strong , nonatomic) UITableView *oneTableView;
@@ -24,6 +27,7 @@
 @property (strong , nonatomic) UIView *alert;
 @property (strong , nonatomic) NSArray *menuList;
 @property (assign , nonatomic) NSUInteger index;    //一级菜单的下标
+@property (copy , nonatomic) void (^selectInfoBlock)(id info);
 
 
 @end
@@ -42,6 +46,9 @@
     [self.view addSubview:self.alertView];
     
     [self.oneTableView reloadData];
+    //设置菜单的高度
+    [self setTableViewHeight:self.oneTableView itemCount:self.menuList.count];
+    [self setTableViewHeight:self.twoTableView itemCount:self.menuList.count];
     
     //一级菜单第0行设置成选中状态
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -49,15 +56,74 @@
 }
 
 
-+ (instancetype)multilevelMenuWithMenuModel:(MultilevelMenuModel *)model
+- (void)setTableViewHeight:(UITableView *)tableView itemCount:(NSUInteger)count
 {
-    return [[self alloc] initMultilevelMenuWithMenuModel:model];
+    if (count >= MaxRow)
+    {
+        [self setTableViewH:tableView H:ItemH * MaxRow];
+        [self setAlertH:ItemH * MaxRow];
+        return;
+    }
+    
+    //高度没超过 MaxRow
+    switch (tableView.tag)
+    {
+        case ONE_TABLEVIEW_TAG:
+        {
+            CGFloat H = count * ItemH;
+            [self setTableViewH:tableView H:H];
+            
+        }break;
+            
+        case TWO_TABLEVIEW_TAG:
+        {
+            CGFloat H = count * ItemH;
+            [self setTableViewH:tableView H:H];
+            if (H <= self.oneTableView.frame.size.height)
+            {
+                [self setAlertH:self.oneTableView.frame.size.height];
+            }
+        }break;
+            
+        default: break;
+    }
 }
 
-- (instancetype)initMultilevelMenuWithMenuModel:(MultilevelMenuModel *)model
+- (void)setTableViewH:(UITableView *)tableView H:(CGFloat)H
+{
+    if (H == tableView.frame.size.height)   return;
+    
+    CGRect frame = tableView.frame;
+    frame.size.height = H;
+    tableView.frame = frame;
+}
+
+- (void)setAlertH:(CGFloat)H
+{
+    if (H == self.alert.frame.size.height)  return;
+    
+    CGRect frame = self.alert.frame;
+    frame.size.height = H;
+    self.alert.frame = frame;
+}
+
+
++ (instancetype)multilevelMenuWithMenuModel:(MultilevelMenuModel *)model selectInfo:(void (^)(id))selectUsingBlock
+{
+    return [[self alloc] initMultilevelMenuWithMenuModel:model selectInfo:selectUsingBlock];
+}
+
+- (instancetype)initMultilevelMenuWithMenuModel:(MultilevelMenuModel *)model selectInfo:(void (^)(id))selectUsingBlock
 {
     if (self = [super init])
     {
+        self.selectInfoBlock = ^(id info){
+            if (selectUsingBlock)
+            {
+                selectUsingBlock(info);
+            }
+        };
+        
         self.menuList = [model getMenuList];
     }
     
@@ -79,7 +145,6 @@
         _oneTableView.tag = ONE_TABLEVIEW_TAG;
         //注册Cell
         [_oneTableView registerNib:[UINib nibWithNibName:@"OneMenuCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"oneCell"];
-        //设置选中哦颜色
     }
     
     return _oneTableView;
@@ -128,7 +193,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50.0f;
+    return ItemH;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,11 +209,21 @@
     {
         self.index = indexPath.row;
         [self.twoTableView reloadData];
+        //如果没有二级菜单 就选中当前
+        Action *action = self.menuList[indexPath.row];  //取出菜单条
+        if (!action.actions.count)  //如果当前菜单条下面没有二级菜单 就退出
+        {
+            self.selectInfoBlock(@(indexPath.row));
+            [self beforeDismissViewController];
+        }
+        //二级菜单高度
+        [self setTableViewHeight:self.twoTableView itemCount:action.actions.count];
     }
     else
     {
         //点击二级菜单
-        
+        self.selectInfoBlock(@(indexPath.row));
+        [self beforeDismissViewController];
     }
 }
 
@@ -177,8 +252,6 @@
             Action *twoAction = oneAction.actions[indexPath.row];   //取二级菜单数据
             twoCell.title = twoAction.title;
             twoCell.detail = [NSString stringWithFormat:@"%@", twoAction.detail];
-            //cell背景色为无色
-            twoCell.backgroundColor = [UIColor clearColor];
             
             cell = twoCell;
         }break;

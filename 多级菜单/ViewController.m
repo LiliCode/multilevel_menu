@@ -28,7 +28,10 @@
 
 - (IBAction)menu:(UIBarButtonItem *)sender
 {
-    MultilevelMenuAlertController *alert = [MultilevelMenuAlertController multilevelMenuWithMenuModel:self.menuModel];
+    MultilevelMenuAlertController *alert = [MultilevelMenuAlertController multilevelMenuWithMenuModel:self.menuModel selectInfo:^(id info) {
+        NSLog(@"%@", info);
+    }];
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
